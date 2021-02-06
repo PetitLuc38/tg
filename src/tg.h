@@ -49,7 +49,8 @@
 #define OUTPUT_WINDOW_HEIGHT 70
 
 #define POSITIVE_SPAN 10
-#define NEGATIVE_SPAN 25
+//increased negative span from 25 to 45
+#define NEGATIVE_SPAN 45
 
 #define EVENTS_COUNT 10000
 #define EVENTS_MAX 100
@@ -57,7 +58,8 @@
 #define PAPERSTRIP_ZOOM_CAL 100
 #define PAPERSTRIP_MARGIN .2
 
-#define MIN_BPH 12000
+// decreased min BPH to 3500
+#define MIN_BPH 3500
 #define MAX_BPH 72000
 #define DEFAULT_BPH 21600
 #define MIN_LA 10 // deg
@@ -66,7 +68,8 @@
 #define MIN_CAL -1000 // 0.1 s/d
 #define MAX_CAL 1000 // 0.1 s/d
 
-#define PRESET_BPH { 12000, 14400, 17280, 18000, 19800, 21600, 25200, 28800, 36000, 43200, 72000, 0 };
+//Added 3600, 15600, etc
+#define PRESET_BPH { 3600, 4500, 7200, 9000, 12000, 14400, 15600, 17280, 18000, 19800, 21600, 25200, 28800, 36000, 43200, 72000, 0 };
 
 #ifdef DEBUG
 #define debug(...) print_debug(__VA_ARGS__)
