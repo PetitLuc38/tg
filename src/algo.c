@@ -657,7 +657,11 @@ static int compute_parameters(struct processing_buffers *p)
 	smooth(fold_wf, smooth_wf, window, wf_size - tic_to_toc);
 	int max_i;
 	float max = vmax(smooth_wf, 0, wf_size - tic_to_toc - window, &max_i);
-	if(max <= 0) return 1;
+	if(max <= 0) {
+		// add debug		
+		debug("max = %f wf_size = %f tic_to_toc = %f window = %f\n",max,wf_size,tic_to_toc,window);
+		return 1;
+	} else
 	p->tic = max_i;
 	p->toc = p->tic + tic_to_toc;
 
@@ -914,8 +918,7 @@ void process(struct processing_buffers *p, int bph, double la, int light)
 	p->ready = !compute_parameters(p);
 	if(!p->ready) {
 		debug("abort after compute_parameters()\n");
-// add debug		
-		debug("max = %f wf_size = %f tic_to_toc = %f window = %f\n",max,wf_size,tic_to_toc,window);
+
 		
 		return;
 	}
