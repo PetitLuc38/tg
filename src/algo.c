@@ -796,7 +796,8 @@ static void compute_amplitude(struct processing_buffers *p, double la)
 		double toc_amp_abs = .5 / sin(M_PI * toc_pulse / p->period);
 		double tic_amp = la * tic_amp_abs;
 		double toc_amp = la * toc_amp_abs;
-		if(135 < tic_amp && tic_amp < 360 && 135 < toc_amp && toc_amp < 360 && fabs(tic_amp - toc_amp) < 60) {
+// Decreased minimum from 135 to 80		
+		if(80 < tic_amp && tic_amp < 360 && 80 < toc_amp && toc_amp < 360 && fabs(tic_amp - toc_amp) < 60) {
 			p->amp = (tic_amp_abs + toc_amp_abs) / 2;
 			p->tic_pulse = tic_pulse;
 			p->toc_pulse = toc_pulse;
