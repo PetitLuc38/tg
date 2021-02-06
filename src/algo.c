@@ -411,15 +411,15 @@ static int compute_period(struct processing_buffers *b, int bph)
 	double estimate;
 	if(bph)
 		estimate = peak_detector(b->samples_sc,
-				7200 * b->sample_rate / bph - b->sample_rate * 4 / 50,
-				7200 * b->sample_rate / bph + b->sample_rate * 4 / 50);
+				7200 * b->sample_rate / bph - b->sample_rate  / 50,
+				7200 * b->sample_rate / bph + b->sample_rate  / 50);
 	else
 		estimate = estimate_period(b);
 	if(estimate == -1) {
 		debug("failed to estimate period\n");
 		return 1;
 	}
-	double delta = b->sample_rate * 4 * 0.02;
+	double delta = b->sample_rate  * 0.02;
 	double new_estimate = estimate;
 	double sum = 0;
 	double sq_sum = 0;
