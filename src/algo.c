@@ -369,11 +369,11 @@ static int peak_detector(float *buff, int a, int b)
 static double estimate_period(struct processing_buffers *p)
 {
 	int first_estimate;
-	// ADD * 4
-	vmax(p->samples_sc, p->sample_rate * 4 / 12, p->sample_rate * 4, &first_estimate);
+	// 
+	vmax(p->samples_sc, p->sample_rate  / 12, p->sample_rate , &first_estimate);
 	first_estimate = peak_detector(p->samples_sc,
-			fmax(p->sample_rate * 4 / 12, first_estimate - p->sample_rate * 4 / 12),
-			first_estimate + p->sample_rate * 4 / 12);
+			fmax(p->sample_rate  / 12, first_estimate - p->sample_rate  / 12),
+			first_estimate + p->sample_rate  / 12);
 	if(first_estimate == -1) {
 		debug("no candidate period\n");
 		return -1;
@@ -381,24 +381,24 @@ static double estimate_period(struct processing_buffers *p)
 	int estimate = first_estimate;
 	int factor = 1;
 	int fct;
-	for(fct = 2; first_estimate / fct > p->sample_rate * 4 / 12; fct++) {
+	for(fct = 2; first_estimate / fct > p->sample_rate  / 12; fct++) {
 		int new_estimate = peak_detector(p->samples_sc,
-					first_estimate / fct - p->sample_rate * 4 / 50,
-					first_estimate / fct + p->sample_rate * 4 / 50);
+					first_estimate / fct - p->sample_rate  / 50,
+					first_estimate / fct + p->sample_rate  / 50);
 		if(new_estimate > -1 && p->samples_sc[new_estimate] > 0.9 * p->samples_sc[first_estimate]) {
 			estimate = new_estimate;
 			factor = fct;
 		}
 	}
-	int a = estimate*3/2 - p->sample_rate * 4 / 50;
-	int b = estimate*3/2 + p->sample_rate * 4 / 50;
+	int a = estimate*3/2 - p->sample_rate  / 50;
+	int b = estimate*3/2 + p->sample_rate  / 50;
 	double max = vmax(p->samples_sc, a, b+1, NULL);
 	if(max < 0.2 * p->samples_sc[estimate]) {
 		if(first_estimate * 2 / factor < p->sample_rate ) {
 			debug("double triggered\n");
 			return peak_detector(p->samples_sc,
-					first_estimate * 2 / factor - p->sample_rate * 4 / 50,
-					first_estimate * 2 / factor + p->sample_rate * 4 / 50);
+					first_estimate * 2 / factor - p->sample_rate  / 50,
+					first_estimate * 2 / factor + p->sample_rate  / 50);
 		} else {
 			debug("period rejected (immense beat error?)\n");
 			return -1;
