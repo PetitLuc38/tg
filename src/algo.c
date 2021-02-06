@@ -901,7 +901,8 @@ void process(struct processing_buffers *p, int bph, double la, int light)
 {
 	prepare_data(p, !light);
 	p->ready = !compute_period(p,bph);
-	if(p->ready && p->period >= p->sample_rate / 2) {
+//changed /2 to *2	
+	if(p->ready && p->period >= p->sample_rate * 2) {
 		debug("Detected period too long\n");
 		p->ready = 0;
 	}
