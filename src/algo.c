@@ -915,7 +915,7 @@ void process(struct processing_buffers *p, int bph, double la, int light)
 	if(!p->ready) {
 		debug("abort after compute_parameters()\n");
 // add debug		
-		debug ("max= ", max)
+		debug("max = %f\n",max);
 		return;
 	}
 	compute_amplitude(p, la);
