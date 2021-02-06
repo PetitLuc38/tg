@@ -42,7 +42,8 @@
 #define FIRST_STEP_LIGHT 0
 
 #define NSTEPS 4
-#define PA_SAMPLE_RATE 44100u
+// diminution sample rate 44100u à 22050
+#define PA_SAMPLE_RATE 22050u
 #define PA_BUFF_SIZE (PA_SAMPLE_RATE << (NSTEPS + FIRST_STEP))
 
 #define OUTPUT_FONT 40
