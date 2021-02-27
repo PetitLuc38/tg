@@ -526,7 +526,7 @@ static gboolean period_draw_event(GtkWidget *widget, cairo_t *c, struct output_p
 	return FALSE;
 }
 
-static gboolean paperstrip_draw_event(GtkWidget *widget, cairo_t *c, struct output_panel *op)
+static gboolean paperstrip_draw_event(GtkWidget *widget, cairo_t *c, struct output_panel *op, int sweep_factor )
 {
 	int i;
 	struct snapshot *snst = op->snst;
