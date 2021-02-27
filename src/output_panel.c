@@ -540,6 +540,7 @@ static gboolean paperstrip_draw_event(GtkWidget *widget, cairo_t *c, struct outp
 		slope = (double) snst->cal * zoom_factor / (10 * 3600 * 24);
 	} else {
 		sweep = snst->sample_rate * 3600. / snst->guessed_bph;
+		debug("sweep = %d \n",sweep);
 		zoom_factor = PAPERSTRIP_ZOOM;
 		if(snst->events_count && snst->events[snst->events_wp])
 			slope = - snst->rate * zoom_factor / (3600. * 24.);
