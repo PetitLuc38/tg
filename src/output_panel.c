@@ -528,6 +528,7 @@ static gboolean period_draw_event(GtkWidget *widget, cairo_t *c, struct output_p
 
 static gboolean paperstrip_draw_event(GtkWidget *widget, cairo_t *c, struct output_panel *op, int sweep_factor )
 {
+	sweep_factor = 60
 	int i;
 	struct snapshot *snst = op->snst;
 	uint64_t time = snst->timestamp ? snst->timestamp : get_timestamp(snst->is_light);
