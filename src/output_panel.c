@@ -526,9 +526,9 @@ static gboolean period_draw_event(GtkWidget *widget, cairo_t *c, struct output_p
 	return FALSE;
 }
 
-static gboolean paperstrip_draw_event(GtkWidget *widget, cairo_t *c, struct output_panel *op, int sweep_factor )
+static gboolean paperstrip_draw_event(GtkWidget *widget, cairo_t *c, struct output_panel *op )
 {
-	sweep_factor = 60;
+	
 	int i;
 	struct snapshot *snst = op->snst;
 	uint64_t time = snst->timestamp ? snst->timestamp : get_timestamp(snst->is_light);
@@ -541,8 +541,6 @@ static gboolean paperstrip_draw_event(GtkWidget *widget, cairo_t *c, struct outp
 		slope = (double) snst->cal * zoom_factor / (10 * 3600 * 24);
 	} else {
 		sweep = snst->sample_rate * 3600. / snst->guessed_bph;
-		sweep = sweep * sweep_factor; //AJOUTTE		
-		debug("sweep = %f \n",sweep);//ajouté
 		zoom_factor = PAPERSTRIP_ZOOM;
 		if(snst->events_count && snst->events[snst->events_wp])
 			slope = - snst->rate * zoom_factor / (3600. * 24.);
