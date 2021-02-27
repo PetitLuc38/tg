@@ -68,6 +68,7 @@
 #define DEFAULT_LA 52 // deg
 #define MIN_CAL -1000 // 0.1 s/d
 #define MAX_CAL 1000 // 0.1 s/d
+#define SWEEP_FACTOR 60 // increase to increase length of paper strip
 
 //Added 3600, 15600, etc
 #define PRESET_BPH { 3600, 4500, 7200, 9000, 12000, 14400, 15600, 17280, 18000, 19800, 21600, 25200, 28800, 36000, 43200, 72000, 0 };
